@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:weather_remake/models/weather.dart';
-import 'package:weather_remake/screens/city_screen.dart';
 import 'package:weather_remake/services/weather_service.dart';
 import 'package:weather_remake/shared/constants.dart';
+import 'package:weather_remake/widgets/city_modal_bottom_sheet.dart';
 
 class LocationScreen extends StatefulWidget {
   final Weather weather;
