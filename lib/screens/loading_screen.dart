@@ -24,25 +24,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
     );
   }
 
-  void _showModalBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Container(
-        width: double.infinity,
-        height: 200.0,
-        child: Column(
-          children: [
-            Text('Home Screen'),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Press me!'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

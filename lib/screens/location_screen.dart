@@ -37,6 +37,15 @@ class _LocationScreenState extends State<LocationScreen> {
     });
   }
 
+  Future _showModalBottomSheet(BuildContext context) async {
+    final city = await showModalBottomSheet(
+      context: context,
+      builder: (context) => CityModalSheet(),
+      isDismissible: true,
+    );
+    return city;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,13 +85,23 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                   TextButton(
                     onPressed: () async {
-                      final String _cityName = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CityScreen(),
-                        ),
-                      );
-                      if (_cityName.isNotEmpty) {
+                      // final String _cityName = await Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => CityScreen(),
+                      //   ),
+                      // );
+                      // if (_cityName.isNotEmpty) {
+                      //   updateUI(
+                      //     weather: await _weatherService.getCityWeatherData(
+                      //       cityName: _cityName,
+                      //     ),
+                      //   );
+                      // }
+                      final String _cityName =
+                          await _showModalBottomSheet(context);
+                      print(_cityName);
+                      if (_cityName != null && _cityName.isNotEmpty) {
                         updateUI(
                           weather: await _weatherService.getCityWeatherData(
                             cityName: _cityName,
