@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_remake/models/project_image.dart';
 
 import 'package:weather_remake/models/weather.dart';
 import 'package:weather_remake/services/weather_service.dart';
 import 'package:weather_remake/shared/constants.dart';
 import 'package:weather_remake/widgets/city_modal_bottom_sheet.dart';
+import 'package:http/http.dart' as http;
 
 class LocationScreen extends StatefulWidget {
   final Weather weather;
@@ -21,11 +23,30 @@ class _LocationScreenState extends State<LocationScreen> {
   int temperature;
   String message, city, icon;
   WeatherService _weatherService;
+  final ProjectImage image = ProjectImage(
+    project: 1,
+    url:
+        'https://images.unsplash.com/photo-1514632595-4944383f2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2468&q=80',
+  );
   @override
   void initState() {
     super.initState();
     _weatherService = WeatherService();
     updateUI(weather: widget.weather);
+    //getProjectImage();
+  }
+
+  void getProjectImage() async {
+    final response = await http.get(
+      Uri.parse('http://127.0.0.1:2090/portfolio/api/v1/images/1/'),
+    );
+    if (response.statusCode == 200) {
+      print(response.body);
+      setState(() {
+        ProjectImage.fromJson(response.body);
+        print(image);
+      });
+    }
   }
 
   void updateUI({Weather weather}) {
@@ -52,9 +73,7 @@ class _LocationScreenState extends State<LocationScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(
-              'https://images.unsplash.com/photo-1514632595-4944383f2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2468&q=80',
-            ),
+            image: NetworkImage(this.image.url),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
               Colors.white.withOpacity(0.8),
