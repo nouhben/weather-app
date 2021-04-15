@@ -29,7 +29,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: CircularProgressIndicator(backgroundColor: Colors.black),
+        child: CircularProgressIndicator(
+          backgroundColor: Colors.black,
+        ),
       ),
     );
   }

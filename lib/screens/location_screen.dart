@@ -66,7 +66,7 @@ class _LocationScreenState extends State<LocationScreen> {
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,31 +119,41 @@ class _LocationScreenState extends State<LocationScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15.0),
-                child: Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: Text(
-                        '$temperature°',
-                        style: kTempTextStyle,
-                        textAlign: TextAlign.left,
+                child: Card(
+                  color: Colors.white.withOpacity(0.21),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Flexible(
+                        child: Text(
+                          '$temperature°',
+                          style: kTempTextStyle,
+                          textAlign: TextAlign.left,
+                        ),
                       ),
-                    ),
-                    Flexible(
-                      child: Text(
-                        icon,
-                        style: kConditionTextStyle,
+                      Flexible(
+                        child: Text(
+                          icon,
+                          style: kConditionTextStyle,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Flexible(
+                fit: FlexFit.loose,
                 child: Padding(
                   padding: EdgeInsets.only(left: 15.0),
-                  child: Text(
-                    '$message in $city',
-                    textAlign: TextAlign.left,
-                    style: kMessageTextStyle,
+                  child: Card(
+                    color: Colors.white.withOpacity(0.21),
+                    child: Text(
+                      '$message in $city',
+                      textAlign: TextAlign.left,
+                      maxLines: 3,
+                      softWrap: true,
+                      style: kMessageTextStyle,
+                    ),
                   ),
                 ),
               ),

@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 final kButtonTextStyle = GoogleFonts.roboto(fontSize: 30.0);
 final kTempTextStyle = GoogleFonts.roboto(fontSize: 100.0);
 
-final kMessageTextStyle = GoogleFonts.lato(fontSize: 60.0);
+final kMessageTextStyle = GoogleFonts.lato(fontSize: 50.0);
 final kConditionTextStyle = GoogleFonts.lato(fontSize: 100.0);
 
 const int K = 273;
